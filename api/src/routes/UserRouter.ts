@@ -1,9 +1,12 @@
 import { Router ,Request,Response} from "express";
 
-const userRouter=Router()
+export const userRouter=Router()
 
-
-
-userRouter.post("/signup",(req:Request,res:Response) =>{
-
+userRouter.get("/test",(req:Request,res:Response)=>{
+    res.json({
+        message:"server is running "
+    })
 })
+
+
+
