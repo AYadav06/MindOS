@@ -12,8 +12,7 @@ export const tagSchema=z.object({
 
 export const AuthSchema=z.object({
 username:z.string().min(3,{message:"username has to be minimum of 3 letter"}),
-password:z.string().min(8,{message:"password must be minimum of 8 digits"}).uppercase().lowercase()
-
+password:z.string().min(8,{message:"password must be minimum of 8 digits"})
 })
 
 
