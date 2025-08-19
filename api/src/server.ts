@@ -6,7 +6,7 @@ import { userRouter } from './routes/UserRouter';
 const app=express();
 
 app.use(express.json())
-app.use("/api",userRouter);
+app.use("/api/v1",userRouter);
 
 async function startServer(){
 app.listen(ENV.PORT,()=>{
