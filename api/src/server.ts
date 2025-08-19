@@ -7,6 +7,8 @@ const app=express();
 
 app.use(express.json())
 app.use("/api/v1",userRouter);
+app.use("/api/v1/brain",userRouter);
+
 
 async function startServer(){
 app.listen(ENV.PORT,()=>{
