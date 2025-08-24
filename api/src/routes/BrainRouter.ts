@@ -9,11 +9,10 @@ export const brainRouter=Router();
 brainRouter.post("/share",authMiddleware,async(req:AuthRequest,res:Response)=>{
     try{
 
-        const shareLink:boolean=req.body.share;
+        const enableLink:boolean=req.body.share;
         const userId=req.userId;
 
-        //check if there is a content to not 
-        console.log(shareLink);
+    
         const content=await ContentModel.findOne({userId})
 
          if(!content){
@@ -24,21 +23,20 @@ brainRouter.post("/share",authMiddleware,async(req:AuthRequest,res:Response)=>{
             return;
              }
 
-             if(shareLink){
-               const hash=random(1);
-               console.log(hash);
+             if(enableLink){
+                let linkCreated=await LinkModel.findOne({userId})
+               if(!linkCreated){
+                 const hash=random(1);
+                   linkCreated=await LinkModel.create({
+                       userId: new mongoose.Types.ObjectId(userId as string),
+                       hash
+                })
+            }
 
-               const linkCreated=await LinkModel.findOneAndUpdate({
-                   userId: new mongoose.Types.ObjectId(userId as string)},
-                {hash:hash},
-                {upsert:true,new:true}
-               );
-
-               res.json({
+               return res.json({
                 message:`Share link is created ${linkCreated.userId}`,
-                link:linkCreated.hash
+                link: `${req.protocol}://${req.get("host")}/api/v1/brain/${linkCreated.hash}`
                })
-              return;
              }
              else{
                 await LinkModel.deleteOne({userId});
@@ -56,6 +54,41 @@ brainRouter.post("/share",authMiddleware,async(req:AuthRequest,res:Response)=>{
         });
 
     }
+})
 
 
+brainRouter.get("/:shareLink",async (req:Request,res:Response)=>{
+
+    const shareLink=req.params.shareLink;
+
+    try {
+        const collection =await LinkModel.findOne({
+            hash:shareLink
+        });
+
+        if(!collection){
+            res.json({
+                message:"No collection is found"
+            })
+            return;
+        }
+        else{
+            const content=await ContentModel.find({
+                userId:collection.userId
+            }).populate('tags','title').populate("userId","username")
+
+            res.status(200).json({
+                content,shareLink
+
+            })
+            return;
+        }
+
+
+    } catch (error) {
+        res.status(500).json({
+            message:"Internal server Error"
+        })
+        return;
+    }
 })

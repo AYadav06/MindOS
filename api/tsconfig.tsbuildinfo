@@ -1,1 +1,1 @@
-{"root":["./src/server.ts","./src/config/db.ts","./src/config/env.ts","./src/config/logger.ts","./src/models/user.ts","./src/routes/UserRouter.ts","./src/types/Schema.ts"],"version":"5.9.2"}
+{"root":["./src/server.ts","./src/config/db.ts","./src/config/env.ts","./src/config/logger.ts","./src/middleware/auth.ts","./src/models/user.ts","./src/routes/BrainRouter.ts","./src/routes/ContentRouter.ts","./src/routes/UserRouter.ts","./src/types/Schema.ts","./src/utils/hash.ts"],"version":"5.9.2"}
