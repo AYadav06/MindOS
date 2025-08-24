@@ -2,12 +2,14 @@ import express from 'express'
 import { ConnectDB } from "./config/db";
 import { ENV } from "./config/env";
 import { userRouter } from './routes/UserRouter';
+import { contentTypes } from './models/user';
+import { contentRouter } from './routes/ContentRouter';
 
 const app=express();
 
 app.use(express.json())
 app.use("/api/v1",userRouter);
-app.use("/api/v1/brain",userRouter);
+app.use("/api/v1/content",contentRouter);
 
 
 async function startServer(){

@@ -24,7 +24,6 @@ const ContentSchema=new Schema({
             
         }
     ],
-
     userId:{type:Types.ObjectId,ref:"Users",require:true},
     createdAt:{
         type:String
@@ -46,7 +45,7 @@ const LinkSchema= new Schema({
 })
 
 
-export const UserModel=model("Users",userSchema)
+export const UserModel=model("User",userSchema)
 export const ContentModel=model("Content",ContentSchema)
 export const TagModel=model("Tag",TagSchema)
 export const LinkModel=model("Link",LinkSchema)
