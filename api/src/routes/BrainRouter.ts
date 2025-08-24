@@ -75,10 +75,10 @@ brainRouter.get("/:shareLink",async (req:Request,res:Response)=>{
         else{
             const content=await ContentModel.find({
                 userId:collection.userId
-            }).populate('tags','title').populate("userId","username")
+            }).populate('tags','title')
 
             res.status(200).json({
-                content,shareLink
+                content
 
             })
             return;
@@ -86,6 +86,7 @@ brainRouter.get("/:shareLink",async (req:Request,res:Response)=>{
 
 
     } catch (error) {
+        console.error("Error in GET /:shareLink:", error);
         res.status(500).json({
             message:"Internal server Error"
         })

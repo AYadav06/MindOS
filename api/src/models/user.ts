@@ -24,7 +24,7 @@ const ContentSchema=new Schema({
             
         }
     ],
-    userId:{type:Types.ObjectId,ref:"Users",require:true},
+    userId:{type:Types.ObjectId,ref:"User",require:true},
     createdAt:{
         type:String
     }
@@ -41,7 +41,7 @@ const TagSchema =new Schema({
 
 const LinkSchema= new Schema({
     hash:{type:String},
-    userId:{type:Types.ObjectId,ref:"Users",required:true,timestamps:true}
+    userId:{type:Types.ObjectId,ref:"User",required:true}
 })
 
 

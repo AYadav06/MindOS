@@ -31,7 +31,7 @@ export const authMiddleware = (
     if (!decoded || typeof decoded !== "object" || !decoded.id) {
       return res.status(401).json({ message: "Invalid token payload" });
     }
-   req.userId=decoded.userId;
+   req.userId=decoded.id;
     next();
   } catch (error) {
     console.error("Auth Error:", error);
