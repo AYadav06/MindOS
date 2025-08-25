@@ -1,13 +1,13 @@
-import React from 'react'
+
 import { Logo } from '../assets/Logo'
 
 export const Navbar = () => {
   return (
-    <div className='flex items-center justify-around w-screen h-20 bg-transparent text-white border-b-1 border-gray-800'>
-        <div className='flex items-center gap-2'>
+    <div className='flex items-center justify-around w-screen h-20 bg-transparent text-white border-b-1 border-gray-800 backdrop-blur-2xl shadow-2xl'>
+        <div className='flex items-center gap-2 text-gray-400'>
         <Logo /> <h2>MINDOS</h2>
         </div>
-        <div className='flex gap-8'>
+        <div className='flex gap-10 text-gray-400'>
             <button >Features</button>
             <button >About us </button>
             <button>Contact us</button>
