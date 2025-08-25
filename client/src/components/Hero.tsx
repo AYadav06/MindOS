@@ -1,9 +1,10 @@
 
+import Card from './Card'
 import { Pattern } from './Pattern'
 
 export const Hero = () => {
   return (
-    <div>
+    <div className='bg-gradient-to-l from-blue-950 via-black to-blue-950'>
 
     <div className='h-96 max-w-4xl text-gray-300 mt-12 mx-auto p-5 text-center shadow-2xl'>
          <Pattern />
@@ -18,6 +19,12 @@ export const Hero = () => {
     </div>
     <div className='h-0.5 w-screen bg-gray-700 opacity-15 mt-12'>
     </div>
+    <div className='flex h-screen gap-2 '>
+
+<Card/>
+
+    </div>
+
     </div>
   )
 }
