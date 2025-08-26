@@ -17,14 +17,10 @@ export const Hero = () => {
             <button className='bg-gradient-to-l from-blue-900 via-black to-blue-900 p-2 rounded-xl text-gray-300 shadow-2xl text-xl'>Get Started</button>
         </div>
     </div>
-    <div className='h-0.5 w-screen bg-gray-700 opacity-15 mt-12'>
-    </div>
+    <div className='h-0.5 w-screen bg-gray-700 opacity-15 mt-12'> </div>
     <div className='flex h-screen gap-2 '>
-
-<Card/>
-
+         <Card/>
     </div>
-
     </div>
   )
 }
