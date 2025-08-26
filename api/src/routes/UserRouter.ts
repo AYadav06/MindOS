@@ -1,9 +1,10 @@
 import { Router, Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { UserModel } from "../models/user";
-import { AuthSchema } from "../types/Schema";
+import { AuthSchema, SignSchema } from "../types/Schema";
 import jwt from "jsonwebtoken";
 import { ENV } from "../config/env";
+import { authMiddleware } from "../middleware/auth";
 
 export const userRouter = Router();
 userRouter.post("/signup", async (req: Request, res: Response) => {
@@ -32,7 +33,7 @@ userRouter.post("/signup", async (req: Request, res: Response) => {
 
 userRouter.post("/signin", async (req: Request, res: Response) => {
     try {
-        const { data, success, error } = AuthSchema.safeParse(req.body);
+        const { data, success, error } = SignSchema.safeParse(req.body);
         if (!success) {
             res.json({
                 message: "error in inputs",
@@ -90,3 +91,4 @@ userRouter.post("/logout",(_,res)=>{
         message:"User is Loggout"
     })
 })
+

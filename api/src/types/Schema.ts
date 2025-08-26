@@ -16,6 +16,10 @@ email:z.email(),
 password:z.string().min(8,{message:"password must be minimum of 8 digits"})
 })
 
+export const SignSchema=z.object({
+email:z.email(),
+password:z.string().min(8,{message:"password must be minimum of 8 digits"})
+})
 
 export const ContentSchema=z.object({
     title:z.string(),
