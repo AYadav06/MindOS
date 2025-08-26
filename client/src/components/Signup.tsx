@@ -1,41 +1,39 @@
-import React, { useRef} from "react";
+import React, { useRef } from "react";
 import { Eye, Mail, Lock, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { BACKEND_URL } from "../config";
+import { useAuth } from "../hooks/AuthContext";
 
 export const Signup: React.FC = () => {
+  const { signup } = useAuth();
   const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (nameRef.current && emailRef.current && passwordRef.current) {
       const name = nameRef.current.value;
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
-      
-      axios.post(BACKEND_URL + "/api/v1/signup", {
-        name,
-        email,
-        password,
-      });
+
+      try {
+        await signup(name, email, password);
+        navigate("/signin");
+      } catch (error) {
+        error: "signup failed";
+      }
       nameRef.current.value = "";
       emailRef.current.value = "";
       passwordRef.current.value = "";
     }
-    navigate("/signin");
   };
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-950 via-slate-900 to-blue-950 flex items-center justify-center p-5">
       <div className="w-full max-w-md">
         <div className="bg-white/0 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-         
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
-         
           <div className="text-center mb-4">
             <h2 className="text-gray-300 text-2xl font-bold">Create Account</h2>
           </div>
@@ -56,7 +54,6 @@ export const Signup: React.FC = () => {
               </div>
             </div>
 
-        
             <div className="space-y-2">
               <label className="block text-white/90 text-sm font-medium">
                 Email
@@ -92,7 +89,7 @@ export const Signup: React.FC = () => {
                 </button>
               </div>
             </div>
-            
+
             <button
               onClick={handleSubmit}
               className="w-full mt-2 py-4 bg-gradient-to-l from-blue-950 via-black to-blue-950 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500/50 transition-all duration-300 relative overflow-hidden group"
@@ -100,7 +97,7 @@ export const Signup: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               <span>Create Account</span>
             </button>
-          
+
             <div className="text-center mt-2">
               <p className="text-white/60 text-sm">
                 Already have an account?{" "}
