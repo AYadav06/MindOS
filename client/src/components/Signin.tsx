@@ -1,4 +1,4 @@
-import { Check, Clock, Eye, Lock, Mail } from "lucide-react";
+import { Check,Eye, Lock, Mail } from "lucide-react";
 
 export const Signin: React.FC = () => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Eye, Clock, Mail, Lock, User} from 'lucide-react';
+import { Eye, Mail, Lock, User} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 
