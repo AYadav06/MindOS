@@ -3,6 +3,7 @@ import mongoose, { model, Schema, Types } from "mongoose";
 
 export const contentTypes= ['Youtube','Tweets','Notes','Link'] as const
 const userSchema=new Schema({
+    name:{type:String,require:true,unique:true},
    username:{type:String,require:true,unique:true},
    password:{type:String,require:true,}
 })

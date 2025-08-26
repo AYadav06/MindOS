@@ -1,7 +1,6 @@
 import { Router, Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { UserModel } from "../models/user";
-import { safeParse } from "zod";
 import { AuthSchema } from "../types/Schema";
 import jwt from "jsonwebtoken";
 import { ENV } from "../config/env";
@@ -19,7 +18,8 @@ userRouter.post("/signup", async (req: Request, res: Response) => {
         } else {
             const hashedPassword = await bcrypt.hash(data.password, 10);
             const response = await UserModel.create({
-                username: data.username,
+                name:data.name,
+                email: data.email,
                 password: hashedPassword,
             });
             res.status(201).json({
@@ -43,7 +43,7 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
             } 
         else {
             const existingUser = await UserModel.findOne({
-                username: data.username,
+                email: data.email,
             });
 
             if (!existingUser?.password) {
@@ -69,7 +69,7 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
                 return;
             } else {
                 res.json({
-                    message: "username or password is invalid",
+                    message: "email or password is invalid",
                 });
                 return;
             } 
