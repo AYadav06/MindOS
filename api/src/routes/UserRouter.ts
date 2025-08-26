@@ -6,7 +6,6 @@ import jwt from "jsonwebtoken";
 import { ENV } from "../config/env";
 
 export const userRouter = Router();
-
 userRouter.post("/signup", async (req: Request, res: Response) => {
     try {
         const { success, data, error } = AuthSchema.safeParse(req.body);
@@ -61,6 +60,10 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
                     },
                     ENV.JWT_SECRETE
                 );
+                res.cookie(ENV.COOKIE_NAME,token,{
+                    httpOnly:true,
+                    sameSite:"strict"
+                })
 
                 res.json({
                     message: "login is succesful",
@@ -81,4 +84,9 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
      }
 });
 
-
+userRouter.post("/logout",(_,res)=>{
+    res.clearCookie(ENV.COOKIE_NAME);
+    res.json({
+        message:"User is Loggout"
+    })
+})
