@@ -7,7 +7,7 @@ import { error } from "console";
 
 export const contentRouter = Router();
 
-contentRouter.post("/", authMiddleware, async (req: Request, res: Response) => {
+contentRouter.post("/", authMiddleware, async (req: AuthRequest, res: Response) => {
   // Validate request body
   const parsed = ContentSchema.safeParse(req.body);
   if (!parsed.success) {
@@ -26,12 +26,11 @@ contentRouter.post("/", authMiddleware, async (req: Request, res: Response) => {
       type: data.type,
       tags: data.tags,
       createdAt: data.createdAt,
-    //   @ts-ignore
       userId: req.userId, 
     });
 
     return res.status(201).json({
-      message:"brain is created",
+      message:"content is created",
       content: {
         contentId: data.contentId,
         title: data.title,
@@ -58,15 +57,19 @@ const content=await ContentModel.find({
   userId
 }).populate('userId');
 
-if(content){
+if(content && content.length > 0){
   res.json({
+    message:"content retrieved successfully",
     content
   })
-
+} else {
+    res.status(404).json({
+        message: "No content found for this user"
+    })
 }
 }
 catch(e){
-res.json({
+res.status(500).json({
   message :"error while getting contents"
 })
 }

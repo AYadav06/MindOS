@@ -1,6 +1,6 @@
 
 import mongoose, { model, Schema, Types } from "mongoose";
-import { email } from "zod";
+
 
 export const contentTypes= ['YouTube','Tweets','Notes','Link'] as const
 const userSchema=new Schema({

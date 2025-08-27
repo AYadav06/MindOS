@@ -23,7 +23,7 @@ password:z.string().min(8,{message:"password must be minimum of 8 digits"})
 
 export const ContentSchema=z.object({
     title:z.string(),
-    link:z.string(),
+    link:z.string().url(),
     type:z.enum(contentTypes,{message:"Enter a valid type"}),
     tags:z.array(tagSchema),
     contentId:z.string(),
