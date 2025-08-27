@@ -1,4 +1,5 @@
-import { typeIcons } from "./NoteCard";
+import { typeIcons } from "./Constants"
+
 export const SideBar = () => {
 
   return (
