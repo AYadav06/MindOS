@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "../../Second-Brain/Features.tsx"]
+  "include": ["src", "src/components/Features.tsx"]
 }

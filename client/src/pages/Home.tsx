@@ -3,6 +3,8 @@ import { Navbar } from '../components/Navbar'
 import { Hero } from '../components/Hero'
 import { Problem } from '../components/Problem'
 import { Solution } from '../components/Solution'
+import { Feature } from '../components/Features'
+
 
 
 export const Home = () => {
@@ -12,6 +14,7 @@ export const Home = () => {
     <Hero />
     <Problem />
     <Solution />
+    < Feature/>
 
         </div>
   )
