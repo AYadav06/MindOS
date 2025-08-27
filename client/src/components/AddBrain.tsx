@@ -104,7 +104,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
     
       <button
         onClick={() => setIsModalOpen(true)}
-        className="group flex items-center gap-3 px-4 py-3 bg-[#0F1629]/70  text-gray-300 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:bg-white/10 border border-white/10"
+        className="group flex items-center gap-3 px-4 py-3 bg-[#0F1629]/70  text-gray-300 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:bg-white/10border border-white/10"
       >
         <Brain className="w-5 h-5 text-gray-300 group-hover:rotate-12 transition-transform duration-300" />
         <span className="font-semibold">Add Brain</span>

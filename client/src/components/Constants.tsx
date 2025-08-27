@@ -6,5 +6,5 @@ export const typeIcons: Record<NoteCardProps["type"], React.ReactNode> = {
   Notes: <FileText  className="w-5 h-5 text-blue-500" />,
   Tweets: <Twitter className="w-5 h-5 text-sky-500" />,
   URL: <LinkIcon className="w-5 h-5 text-green-500" />,
-  Link: <LinkIcon className="w-5 h-5 text-green-500" />,
+  Link: <LinkIcon className="w-5 h-5  text-green-500" />,
 };

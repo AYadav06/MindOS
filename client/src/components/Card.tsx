@@ -8,13 +8,12 @@ const cards = [
 
 export default function Card() {
   return (
-    <div className="w-full mt-10">
-
-      <div className="flex gap-8 h-40 ml-16">
+    <div className="w-full mt-12 px-4 ml-10">
+      <div className="flex flex-wrap gap-4 justify-center lg:justify-start lg:gap-8 h-auto lg:h-40">
         {[...cards].map((card, index) => (
           <div
             key={index}
-            className="min-w-[280px] max-w-[280px] bg-[#0F1629]/70 border border-white/10 rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.4)] backdrop-blur-lg"
+            className="w-full sm:w-[280px] bg-[#0F1629]/70 border border-white/10 rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.4)] backdrop-blur-lg"
           >
             <h3 className="text-lg font-semibold text-white">{card.title}</h3>
             <p className="text-gray-400 mt-2 text-sm">{card.desc}</p>
