@@ -23,7 +23,6 @@ app.use("/api/v1/content",contentRouter);
 app.use("/api/v1/brain",brainRouter);
 app.use("/user",router);
 
-
 async function startServer(){
 app.listen(ENV.PORT,()=>{
     ConnectDB();

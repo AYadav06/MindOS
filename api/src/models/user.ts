@@ -2,7 +2,7 @@
 import mongoose, { model, Schema, Types } from "mongoose";
 import { email } from "zod";
 
-export const contentTypes= ['Youtube','Tweets','Notes','Link'] as const
+export const contentTypes= ['YouTube','Tweets','Notes','Link'] as const
 const userSchema=new Schema({
     name:{type:String,require:true,unique:true},
     email:{type:String,require:true,unique:true},
