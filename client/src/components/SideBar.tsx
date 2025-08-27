@@ -1,10 +1,7 @@
 
 import { typeIcons } from "./Constants"
 
-interface SideBarProps {
-  onAdd?: () => void;
-}
-export const SideBar = ({ onAdd }: SideBarProps) => {
+export const SideBar =() =>{
 
   return (
     <nav className='max-w-2xs h-screen bg-[#0F1629]/70 border border-white/10 p-6 shadow-[0_4px_20px_rgba(0,0,0,0.4)] backdrop-blur-lg text-gray-300'>

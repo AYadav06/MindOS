@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Search, Download, Brain, ChevronRight, FileText, Lightbulb } from 'lucide-react';
 
 export const Feature = () => {

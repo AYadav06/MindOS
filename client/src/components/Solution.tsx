@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Bookmark, FileText, Brain, Search, Zap, Sparkles, ArrowRight } from 'lucide-react';
 
 export const Solution = () => {
