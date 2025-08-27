@@ -13,7 +13,9 @@ export const Dashboard = () => {
 
   const fetchNotes = async () => {
     try {
-      const res = await api.get("/api/v1/content");
+      const res = await api.get("/api/v1/content",{
+        
+      });
 
       const mapped = res.data.content.map((c: any) => ({
         title: c.title,
@@ -38,7 +40,7 @@ export const Dashboard = () => {
       <div className="flex">
         {/* Sidebar */}
         <div className="w-64">
-          <SideBar onAdd={fetchNotes} />
+          <SideBar />
         </div>
 
         {/* Main content */}
@@ -48,7 +50,7 @@ export const Dashboard = () => {
           </h1>
           <AddBrain onAdd={fetchNotes} />
           {/* Grid of cards */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-6 mt-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {notes.length > 0 ? (
               notes.map((note) => (
                 <NoteCard

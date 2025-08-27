@@ -4,7 +4,7 @@ import { typeIcons } from "./Constants";
 export type NoteCardProps = {
   title: string;
   link?: string;
-  type: "YouTube" | "Notes" | "Tweets" | "URL";
+  type: "YouTube" | "Notes" | "Tweets" | "URL" | "Link";
   tags: string[];
 };
 

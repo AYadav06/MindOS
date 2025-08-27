@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { X, Brain, Plus, Youtube, Twitter, ExternalLink, StickyNote, Tag } from "lucide-react";
-
-const api = {
-  post: async (url: string, data: any) => {
-    console.log("API call:", url, data);
-    return new Promise(resolve => setTimeout(resolve, 1000));
-  }
-};
+import api from "../utils/api";
 
 interface BrainEntry {
   title: string;
@@ -33,7 +27,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
   const typeOptions = [
     { value: "YouTube", label: "YouTube", icon: Youtube, color: "text-red-400" },
     { value: "Tweets", label: "Tweets", icon: Twitter, color: "text-blue-400" },
-    { value: "URL", label: "URL", icon: ExternalLink, color: "text-green-400" },
+    { value: "Link", label: "URL", icon: ExternalLink, color: "text-green-400" },
     { value: "Notes", label: "Notes", icon: StickyNote, color: "text-yellow-400" },
   ];
 
@@ -76,7 +70,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
         }));
 
         await api.post("/api/v1/content", {
-          contentId: Date.now().toString(), // Simple ID based on timestamp
+          contentId: Date.now().toString(), 
           title: formData.title,
           link: formData.link,
           type: formData.type,
@@ -107,7 +101,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
 
   return (
     <div>
-     
+    
       <button
         onClick={() => setIsModalOpen(true)}
         className="group flex items-center gap-3 px-4 py-3 bg-[#0F1629]/70  text-gray-300 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:bg-white/10 border border-white/10"
@@ -188,7 +182,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
                     </option>
                     <option value="YouTube" className="bg-slate-800 text-white">YouTube</option>
                     <option value="Tweets" className="bg-slate-800 text-white">Tweets</option>
-                    <option value="URL" className="bg-slate-800 text-white">URL</option>
+                    <option value="Link" className="bg-slate-800 text-white">URL</option>
                     <option value="Notes" className="bg-slate-800 text-white">Notes</option>
                   </select>
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
