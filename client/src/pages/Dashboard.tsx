@@ -4,21 +4,22 @@ import { SideBar } from "../components/SideBar";
 import { useAuth } from "../hooks/AuthContext";
 import { useEffect, useState } from "react";
 import api from "../utils/api";
+import AddBrain from "../components/AddBrain";
+
 
 export const Dashboard = () => {
-  const { user, logout } = useAuth();
   const [notes, setNotes] = useState<NoteCardProps[]>([]);
+  const { user, logout } = useAuth();
 
- useEffect(() => {
   const fetchNotes = async () => {
     try {
-      const res = await api.get("/api/v1/content"); 
+      const res = await api.get("/api/v1/content");
 
       const mapped = res.data.content.map((c: any) => ({
         title: c.title,
         link: c.link,
         type: c.type,
-        tags: c.tags.map((t: any) => t.title), 
+        tags: c.tags.map((t: any) => t.title),
       }));
 
       setNotes(mapped);
@@ -27,10 +28,9 @@ export const Dashboard = () => {
     }
   };
 
-  fetchNotes();
-}, []);
-
-
+  useEffect(() => {
+    fetchNotes();
+  }, []);
   return (
     <section className="min-h-screen bg-gradient-to-tl from-slate-800 via-blue-950 to-slate-700">
       <DashNavbar />
@@ -38,7 +38,7 @@ export const Dashboard = () => {
       <div className="flex">
         {/* Sidebar */}
         <div className="w-64">
-          <SideBar />
+          <SideBar onAdd={fetchNotes} />
         </div>
 
         {/* Main content */}
@@ -46,13 +46,13 @@ export const Dashboard = () => {
           <h1 className="text-2xl font-semibold mb-6 text-gray-200">
             Happy To See You Back! {user?.name}
           </h1>
-
+          <AddBrain onAdd={fetchNotes} />
           {/* Grid of cards */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {notes.length > 0 ? (
               notes.map((note) => (
                 <NoteCard
-                  key={note.title + note.link} 
+                  key={note.title + note.link}
                   title={note.title}
                   link={note.link}
                   type={note.type}
