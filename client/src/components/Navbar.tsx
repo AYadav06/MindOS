@@ -24,7 +24,7 @@ export const Navbar = () => {
         {/* Desktop Get Started Button */}
         <div className='hidden lg:block'>
             <button onClick={()=>navigate('/signup')}
-             className='bg-gradient-to-l from-blue-900 via-black to-blue-900 p-2 rounded-xl text-gray-400 shadow-2xl hover:scale-105 transition-transform' >Get Started</button>
+             className='px-6 py-3 bg-[#0F1629]/50 border border-white/10 rounded-xl text-gray-300 hover:bg-[#0F1629]/70 hover:border-white/20 transition-all duration-300'>Get Started</button>
         </div>
 
         {/* Mobile Menu Button */}

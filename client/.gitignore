@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+Testimonials.tsx
+TheSolution.tsx
+FinalCTA.tsx
+Footer.tsx
