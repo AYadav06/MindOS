@@ -9,7 +9,7 @@ import AddBrain from "../components/AddBrain";
 
 export const Dashboard = () => {
   const [notes, setNotes] = useState<NoteCardProps[]>([]);
-  const { user, logout } = useAuth();
+  const { user} = useAuth();
 
   const fetchNotes = async () => {
     try {
