@@ -10,7 +10,7 @@ import { Footer } from '../components/Footer'
 
 export const Home = () => {
   return (
-     <div className='min-h-screen w-screen bg-gradient-to-l from-blue-950 via-black to-blue-950'>
+     <div className='min-h-screen w-full overflow-x-hidden bg-gradient-to-l from-blue-950 via-black to-blue-950'>
     <Navbar />
     <Hero />
     <Problem />

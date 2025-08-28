@@ -23,7 +23,7 @@ export const Problem = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-24 px-4 bg-gradient-to-l from-blue-950 via-black to-blue-950">
+    <section className="py-16 lg:py-14 lg:mt-20 px-4 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-800">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

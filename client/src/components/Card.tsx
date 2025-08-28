@@ -11,7 +11,7 @@ export default function Card() {
   return (
     <div className="w-full mt-12 px-4">
 
-      <div className="flex flex-wrap gap-4 justify-center lg:justify-start lg:gap-10 h-auto lg:h-40 ml-10">
+      <div className="flex flex-wrap gap-4 justify-center lg:justify-start lg:gap-10 h-auto lg:h-40">
         {cards.map((card, index) => {
           const Icon = card.icon;
           return (

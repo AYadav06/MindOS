@@ -5,7 +5,6 @@ import { Pattern } from './Pattern'
 export const Hero = () => {
   return (
     <div className='bg-gradient-to-l from-blue-950 via-black to-blue-950'>
-
     <div className='min-h-[300px] lg:h-96 max-w-4xl text-gray-300 mt-6 lg:mt-12 mx-auto p-4 lg:p-5 text-center shadow-2xl'>
          <Pattern />
          <h1 className='text-4xl sm:text-5xl lg:text-7xl mt-2 font-semibold'>MindOS - From Chaos</h1>
@@ -14,11 +13,11 @@ export const Hero = () => {
         <h2 className='text-lg sm:text-xl text-gray-400 leading-relaxed'>Mind-OS is your personal knowledge engine. Effortlessly capture your thoughts, connect disparate ideas, and build a digital extension of your mind.</h2>
         </div>
         <div className='mt-8 lg:mt-10'>
-            <button className='px-6 py-3 bg-[#0F1629]/50 border border-white/10 rounded-xl text-gray-300 hover:bg-[#0F1629]/70 hover:border-white/20 transition-all duration-300'>Get Started</button>
+            <button className='px-6 py-3 bg-gradient-to-r from-blue-900 to-slate-600 text-white text-xl font-bold rounded-2xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-blue-500/25 transform hover:-translate-y-1'>Get Started</button>
         </div>
     </div>
-    <div className='h-0.5 w-screen bg-gray-700 opacity-15 mt-8 lg:mt-12'> </div>
-    <div className='flex gap-2 py-4 lg:py-8'>
+    <div className='h-0.5 w-full bg-gray-700 opacity-15 mt-8 lg:mt-12'> </div>
+    <div className='flex gap-2 py-4 lg:py-8 lg:mx-12'>
          <Card/>
     </div>
     </div>

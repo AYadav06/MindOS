@@ -9,7 +9,7 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className='flex items-center justify-between w-screen h-20 bg-transparent text-white border-b-1 border-gray-800 backdrop-blur-2xl shadow-2xl px-4 lg:px-8'>
+    <div className='flex items-center justify-between w-screen h-20 bg-transparent text-white border-b-1 border-gray-800 backdrop-blur-2xl shadow-2xl px-15  '>
         <div className='flex items-center gap-2 text-gray-400'>
         <Logo /> <h2 className='text-lg lg:text-xl'>MINDOS</h2>
         </div>
@@ -24,7 +24,7 @@ export const Navbar = () => {
         {/* Desktop Get Started Button */}
         <div className='hidden lg:block'>
             <button onClick={()=>navigate('/signup')}
-             className='px-6 py-3 bg-[#0F1629]/50 border border-white/10 rounded-xl text-gray-300 hover:bg-[#0F1629]/70 hover:border-white/20 transition-all duration-300'>Get Started</button>
+             className='px-6 py-3 bg-gradient-to-r from-blue-900 to-slate-600 text-white text-sm font-bold rounded-2xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-blue-500/25 transform hover:-translate-y-1'>Get Started</button>
         </div>
 
         {/* Mobile Menu Button */}
