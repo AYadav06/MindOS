@@ -1,4 +1,3 @@
-
 import { Navbar } from '../components/Navbar'
 import { Hero } from '../components/Hero'
 import { Problem } from '../components/Problem'
@@ -7,7 +6,6 @@ import { Feature } from '../components/Features'
 import { Testimonials } from '../components/Testimonials'
 import { FinalCTA } from '../components/FinalCTA'
 import { Footer } from '../components/Footer'
-
 
 
 export const Home = () => {
@@ -19,9 +17,8 @@ export const Home = () => {
     <Solution />
     < Feature/>
     <Testimonials />
-<FinalCTA />
-<Footer />
-
+    <FinalCTA />
+    <Footer />
         </div>
   )
 }

@@ -49,7 +49,6 @@ export const Problem = () => {
             </div>
           </div>
           
-          {/* Animated connecting lines */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <svg className="w-full h-20 lg:h-24" viewBox="0 0 400 100" fill="none">
               <path 
@@ -103,7 +102,7 @@ export const Problem = () => {
                 </p>
 
                 {/* Hover effect line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-slate-500 rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               </div>
             );
           })}
