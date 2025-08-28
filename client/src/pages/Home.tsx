@@ -5,6 +5,8 @@ import { Problem } from '../components/Problem'
 import { Solution } from '../components/Solution'
 import { Feature } from '../components/Features'
 import { Testimonials } from '../components/Testimonials'
+import { FinalCTA } from '../components/FinalCTA'
+import { Footer } from '../components/Footer'
 
 
 
@@ -17,6 +19,8 @@ export const Home = () => {
     <Solution />
     < Feature/>
     <Testimonials />
+<FinalCTA />
+<Footer />
 
         </div>
   )
