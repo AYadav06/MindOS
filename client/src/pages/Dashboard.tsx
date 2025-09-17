@@ -34,17 +34,12 @@ export const Dashboard = () => {
     fetchNotes();
   }, []);
   return (
-    <section className="min-h-screen bg-gradient-to-tl from-slate-800 via-blue-950 to-slate-700">
+    <section className="h-screen overflow-hidden bg-gradient-to-tl from-slate-800 via-blue-950 to-slate-700">
       <DashNavbar />
 
-      <div className="flex">
-        {/* Sidebar */}
-        <div className="w-64">
-          <SideBar />
-        </div>
-
-        {/* Main content */}
-        <div className="flex-1 p-8">
+    
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-[calc(100vh-4rem-3.5rem)] overflow-y-auto">
+        <div className="py-6">
           <h1 className="text-2xl font-semibold mb-6 text-gray-200">
             Happy To See You Back! {user?.name}
           </h1>
@@ -66,6 +61,9 @@ export const Dashboard = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className="sticky bottom-0  z-40 w-screen">
+          <SideBar />
       </div>
     </section>
   );
