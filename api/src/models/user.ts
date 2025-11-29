@@ -35,7 +35,7 @@ const ContentSchema=new Schema({
 
 const TagSchema =new Schema({
     title:{
-        type:String,
+
         require:true,
         set:(a:string)=> a.toLowerCase().trim()
     }
