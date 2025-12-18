@@ -4,6 +4,7 @@ import { ENV } from "./config/env";
 import { userRouter } from './routes/UserRouter';
 import { contentRouter } from './routes/ContentRouter';
 import { brainRouter } from './routes/BrainRouter';
+import { searchRouter } from './routes/SearchRouter';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import { router } from './middleware/auth';
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use("/api/v1",userRouter);
 app.use("/api/v1/content",contentRouter);
 app.use("/api/v1/brain",brainRouter);
+app.use("/api/v1/search",searchRouter);
 app.use("/user",router);
 
 async function startServer(){

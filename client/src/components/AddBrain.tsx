@@ -104,25 +104,25 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
     
       <button
         onClick={() => setIsModalOpen(true)}
-        className="group flex items-center gap-3 px-4 py-3 bg-[#0F1629]/70  text-gray-300 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:bg-white/10border border-white/10"
+        className="group flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-[#0F1629]/70 text-gray-300 rounded-lg sm:rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:bg-white/10 border border-white/10 text-sm sm:text-base"
       >
-        <Brain className="w-5 h-5 text-gray-300 group-hover:rotate-12 transition-transform duration-300" />
+        <Brain className="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:rotate-12 transition-transform duration-300" />
         <span className="font-semibold">Add Brain</span>
       </button>
 
      
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gradient-to-tl from-slate-800 via-blue-950 to-slate-700 flex items-center justify-center z-50 p-4">
-          <div className="bg-gradient-to-br from-blue-950 via-slate-900 to-blue-950 rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto backdrop-blur-2xl text-gray-300 border border-white/10">
+        <div className="fixed inset-0 bg-gradient-to-tl from-slate-800 via-blue-950 to-slate-700 flex items-center justify-center z-50 p-3 sm:p-4">
+          <div className="bg-gradient-to-br from-blue-950 via-slate-900 to-blue-950 rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md max-h-[95vh] sm:max-h-[90vh] overflow-y-auto backdrop-blur-2xl text-gray-300 border border-white/10">
             
            
-            <div className="flex items-center justify-between p-6 border-b border-white/20">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-white/10 rounded-xl border border-white/20">
-                  <Brain className="w-6 h-6 text-light-primary" />
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/20">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-1.5 sm:p-2 bg-white/10 rounded-lg sm:rounded-xl border border-white/20">
+                  <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-light-primary" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-300">Add New Brain</h2>
+                  <h2 className="text-lg sm:text-xl font-semibold text-gray-300">Add New Brain</h2>
                 </div>
               </div>
               <button
@@ -134,7 +134,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
             </div>
 
             {/* Form Content */}
-            <div className="p-6 space-y-6">
+            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
               
               {/* Title Field - Your styling with enhancements */}
               <div>
@@ -146,7 +146,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
                     type="text"
                     value={formData.title}
                     onChange={(e) => handleInputChange("title", e.target.value)}
-                    className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 hover:bg-white/15"
+                    className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base bg-white/10 border border-white/20 rounded-lg sm:rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 hover:bg-white/15"
                     placeholder="Enter a descriptive title..."
                   />
                 </div>
@@ -162,7 +162,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
                     type="url"
                     value={formData.link}
                     onChange={(e) => handleInputChange("link", e.target.value)}
-                    className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 hover:bg-white/15"
+                    className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base bg-white/10 border border-white/20 rounded-lg sm:rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 hover:bg-white/15"
                     placeholder="https://example.com..."
                   />
                 </div>
@@ -207,16 +207,16 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
                     value={tagInput}
                     onChange={(e) => setTagInput(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 hover:bg-white/15"
+                    className="flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base bg-white/10 border border-white/20 rounded-lg sm:rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 hover:bg-white/15"
                     placeholder="Enter tag & press Enter"
                   />
                   <button
                     type="button"
                     onClick={handleAddTag}
-                    className="px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 flex items-center gap-2"
+                    className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-white/10 border border-white/20 rounded-lg sm:rounded-xl text-white hover:bg-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 flex items-center gap-1 sm:gap-2"
                   >
-                    <Plus className="w-4 h-4" />
-                    Add
+                    <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Add</span>
                   </button>
                 </div>
                 
@@ -243,11 +243,11 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
               </div>
 
               {/* Footer Buttons - Your exact styling with enhancements */}
-              <div className="flex gap-3 pt-4">
+              <div className="flex gap-2 sm:gap-3 pt-3 sm:pt-4">
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
+                  className="flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base bg-white/10 border border-white/20 rounded-lg sm:rounded-xl text-white hover:bg-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
                 >
                   Cancel
                 </button>
@@ -255,7 +255,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
                   type="button"
                   onClick={handleSubmit}
                   disabled={isLoading || !formData.title || !formData.link || !formData.type}
-                  className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base bg-white/10 border border-white/20 rounded-lg sm:rounded-xl text-white hover:bg-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1 sm:gap-2"
                 >
                   {isLoading ? (
                     <>

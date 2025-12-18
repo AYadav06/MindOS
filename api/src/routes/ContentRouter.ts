@@ -3,6 +3,7 @@ import { ContentSchema } from "../types/Schema";
 import { authMiddleware, AuthRequest } from "../middleware/auth";
 import { ContentModel } from "../models/user";
 import { error } from "console";
+import { embeddingService } from "../services/embedding";
 
 
 export const contentRouter = Router();
@@ -19,6 +20,19 @@ contentRouter.post("/", authMiddleware, async (req: AuthRequest, res: Response) 
   const data = parsed.data;
 
   try {
+    // Generate embedding for semantic search
+    let embedding: number[] | undefined;
+    try {
+      embedding = await embeddingService.generateContentEmbedding(
+        data.title,
+        data.tags,
+        data.type
+      );
+    } catch (embedError) {
+      console.warn("Failed to generate embedding, continuing without it:", embedError);
+      // Continue without embedding - content will still be saved
+    }
+
     await ContentModel.create({
       contentId: data.contentId,
       title: data.title,
@@ -26,7 +40,8 @@ contentRouter.post("/", authMiddleware, async (req: AuthRequest, res: Response) 
       type: data.type,
       tags: data.tags,
       createdAt: data.createdAt,
-      userId: req.userId, 
+      userId: req.userId,
+      embedding,
     });
 
     return res.status(201).json({
@@ -111,15 +126,36 @@ contentRouter.put("/",authMiddleware,async(req:AuthRequest,res:Response)=>{
 const data=ContentSchema.parse(req.body);
 const contentId=req.body.contentId;
 
-  const updatedContent=await ContentModel.findOneAndUpdate({
-    contentId:contentId,
-    userId:req.userId
-    },{
+  // Generate new embedding for updated content
+  let embedding: number[] | undefined;
+  try {
+    embedding = await embeddingService.generateContentEmbedding(
+      data.title,
+      data.tags,
+      data.type
+    );
+  } catch (embedError) {
+    console.warn("Failed to generate embedding, continuing without it:", embedError);
+    // Continue without embedding update
+  }
+
+  const updateData: any = {
       title:data.title,
       link:data.link,
       type:data.type,
       tags:data.tags
+    };
+
+  // Only update embedding if it was successfully generated
+  if (embedding) {
+    updateData.embedding = embedding;
+  }
+
+  const updatedContent=await ContentModel.findOneAndUpdate({
+    contentId:contentId,
+    userId:req.userId
     },
+    updateData,
   {new:true});
   if(!updatedContent){
 

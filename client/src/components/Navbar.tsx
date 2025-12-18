@@ -9,9 +9,9 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className='flex items-center justify-between w-screen h-20 bg-transparent text-white border-b-1 border-gray-800 backdrop-blur-2xl shadow-2xl px-15  '>
+    <div className='flex items-center justify-between w-screen h-16 sm:h-20 bg-transparent text-white border-b-1 border-gray-800 backdrop-blur-2xl shadow-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16'>
         <div className='flex items-center gap-2 text-gray-400'>
-        <Logo /> <h2 className='text-lg lg:text-xl'>MINDOS</h2>
+        <Logo /> <h2 className='text-base sm:text-lg lg:text-xl'>MINDOS</h2>
         </div>
         
         {/* Desktop Menu */}
