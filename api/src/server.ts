@@ -27,6 +27,11 @@ app.use("/api/v1/search",searchRouter);
 app.use("/api/v1/analyze",analysisRouter);
 app.use("/user",router);
 
+app.get("/health",(req,res)=>{
+    res.json({
+        messaeg:"server is running ..."
+    })
+})
 async function startServer(){
 app.listen(ENV.PORT,()=>{
     ConnectDB();
