@@ -1,7 +1,20 @@
 
-import {ArrowRight} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/AuthContext';
 
 export const FinalCTA = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const handleGetStarted = () => {
+    if (user) {
+      navigate('/dashboard');
+    } else {
+      navigate('/signup');
+    }
+  };
+
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-20 px-4 sm:px-6 bg-gradient-to-tr from-slate-800 via-blue-950 to-slate-900 relative overflow-hidden">
       
@@ -30,7 +43,10 @@ export const FinalCTA = () => {
         </p>
         {/* Main CTA Button */}
         <div className="mb-6 sm:mb-8">
-          <button className="group relative px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-6 bg-gradient-to-r from-blue-900 to-slate-600 text-white text-base sm:text-lg md:text-xl font-bold rounded-xl sm:rounded-2xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-blue-500/25 transform hover:-translate-y-1">
+          <button
+            onClick={handleGetStarted}
+            className="group relative px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-6 bg-gradient-to-r from-blue-900 to-slate-600 text-white text-base sm:text-lg md:text-xl font-bold rounded-xl sm:rounded-2xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-blue-500/25 transform hover:-translate-y-1 cursor-pointer"
+          >
             <span className="flex items-center gap-2 sm:gap-3">
               Get Started for Free
               <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />

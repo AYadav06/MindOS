@@ -3,28 +3,42 @@ import { useNavigate } from 'react-router-dom'
 import { Logo } from '../assets/Logo'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import { useAuth } from '../hooks/AuthContext'
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleGetStarted = () => {
+    if (user) {
+      navigate('/dashboard');
+    } else {
+      navigate('/signup');
+    }
+  };
 
   return (
     <div className='flex items-center justify-between w-screen h-16 sm:h-20 bg-transparent text-white border-b-1 border-gray-800 backdrop-blur-2xl shadow-2xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16'>
-        <div className='flex items-center gap-2 text-gray-400'>
-        <Logo /> <h2 className='text-base sm:text-lg lg:text-xl'>MINDOS</h2>
+        <div className='flex items-center gap-2 text-gray-400 cursor-pointer' onClick={() => navigate('/')}>
+        <Logo /> <h2 className='text-base sm:text-lg lg:text-xl font-bold'>MINDOS</h2>
         </div>
         
         {/* Desktop Menu */}
         <div className='hidden lg:flex gap-10 text-gray-400'>
-            <button className='hover:text-white transition-colors'>Features</button>
-            <button className='hover:text-white transition-colors'>About us</button>
-            <button className='hover:text-white transition-colors'>Contact us</button>
+            <button className='hover:text-white transition-colors cursor-pointer'>Features</button>
+            <button className='hover:text-white transition-colors cursor-pointer'>About us</button>
+            <button className='hover:text-white transition-colors cursor-pointer'>Contact us</button>
         </div>
         
         {/* Desktop Get Started Button */}
         <div className='hidden lg:block'>
-            <button onClick={()=>navigate('/signup')}
-             className='px-6 py-3 bg-gradient-to-r from-blue-900 to-slate-600 text-white text-sm font-bold rounded-2xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-blue-500/25 transform hover:-translate-y-1'>Get Started</button>
+            <button
+              onClick={handleGetStarted}
+              className='px-6 py-3 bg-gradient-to-r from-blue-900 to-slate-600 text-white text-sm font-bold rounded-2xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-blue-500/25 transform hover:-translate-y-1 cursor-pointer'
+            >
+              {user ? 'Go to Dashboard' : 'Get Started'}
+            </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -46,12 +60,12 @@ export const Navbar = () => {
                     <button className='text-gray-400 hover:text-white transition-colors text-left py-2'>Contact us</button>
                     <button 
                         onClick={() => {
-                            navigate('/signup');
+                            handleGetStarted();
                             setIsMenuOpen(false);
                         }}
-                        className='bg-gradient-to-l from-blue-900 via-black to-blue-900 p-3 rounded-xl text-gray-400 shadow-2xl hover:scale-105 transition-transform w-full text-center'
+                        className='bg-gradient-to-l from-blue-900 via-black to-blue-900 p-3 rounded-xl text-gray-200 font-semibold shadow-2xl hover:scale-105 transition-transform w-full text-center'
                     >
-                        Get Started
+                        {user ? 'Go to Dashboard' : 'Get Started'}
                     </button>
                 </div>
             </div>
