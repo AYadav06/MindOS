@@ -59,20 +59,24 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
     }
   };
 
+  const [error, setError] = useState<string | null>(null);
+
   const handleSubmit = async () => {
-    if (formData.title && formData.link && formData.type) {
+    const isLinkRequired = formData.type !== "Notes";
+    if (formData.title && formData.type && (!isLinkRequired || formData.link)) {
       setIsLoading(true);
+      setError(null);
       try {
         // Transform tags to the expected format with tagId and title
         const transformedTags = formData.tags.map((tag, index) => ({ 
-          tagId: (index + 1).toString(), // Simple incremental ID, you might want to generate unique IDs
+          tagId: (index + 1).toString(),
           title: tag 
         }));
 
         await api.post("/api/v1/content", {
           contentId: Date.now().toString(), 
           title: formData.title,
-          link: formData.link,
+          link: formData.link || "",
           type: formData.type,
           tags: transformedTags,
           createdAt: new Date().toISOString(),
@@ -82,12 +86,16 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
         setFormData({ title: "", link: "", type: "", tags: [] });
         setTagInput("");
         setIsModalOpen(false);
-      } catch (err) {
+      } catch (err: any) {
         console.error("Error adding brain:", err);
-        // You might want to show an error message to the user here
+        setError(
+          err.response?.data?.message || "Failed to save content. Please check your inputs."
+        );
       } finally {
         setIsLoading(false);
       }
+    } else {
+      setError("Please fill in all required fields.");
     }
   };
 
@@ -135,11 +143,16 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
 
             {/* Form Content */}
             <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+              {error && (
+                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm">
+                  {error}
+                </div>
+              )}
               
               {/* Title Field - Your styling with enhancements */}
               <div>
                 <label className="block text-sm font-medium mb-2 text-gray-200">
-                  Title
+                  Title *
                 </label>
                 <div className="relative group">
                   <input
@@ -155,7 +168,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
               {/* Link Field - Your styling with enhancements */}
               <div>
                 <label className="block text-sm font-medium mb-2 text-gray-200">
-                  Link
+                  Link {formData.type !== "Notes" ? "*" : "(Optional for Notes)"}
                 </label>
                 <div className="relative group">
                   <input
@@ -169,7 +182,7 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 text-gray-200">
-                  Type
+                  Type *
                 </label>
                 <div className="relative">
                   <select
@@ -254,7 +267,12 @@ export default function AddBrain({ onAdd }: AddBrainProps) {
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  disabled={isLoading || !formData.title || !formData.link || !formData.type}
+                  disabled={
+                    isLoading ||
+                    !formData.title ||
+                    !formData.type ||
+                    (formData.type !== "Notes" && !formData.link)
+                  }
                   className="flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base bg-white/10 border border-white/20 rounded-lg sm:rounded-xl text-white hover:bg-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/15 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1 sm:gap-2"
                 >
                   {isLoading ? (
