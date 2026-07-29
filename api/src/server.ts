@@ -12,7 +12,7 @@ import { router } from './middleware/auth';
 const app=express();
 
 const corsOption={
-origin:["http://localhost:3000","http://localhost:5173"],
+origin:["http://localhost:3000","http://localhost:5173",],
 methods:'GET,POST,PUT,DELETE',
 credentials:true,
 optionsSuccessStatus:204
