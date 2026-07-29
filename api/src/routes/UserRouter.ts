@@ -14,20 +14,34 @@ userRouter.post("/signup", async (req: Request, res: Response) => {
         if (!success) {
             res.status(411).json({
                 message: "Error in inputs",
+                errors: error.format()
             });
-        } else {
-            const hashedPassword = await bcrypt.hash(data.password, 10);
-            const response = await UserModel.create({
-                name:data.name,
-                email: data.email,
-                password: hashedPassword,
-            });
-            res.status(201).json({
-                message: "user is created ... ",
-            });
+            return;
         }
-    } catch (error) {
-        console.log("error while signup...");
+
+        const hashedPassword = await bcrypt.hash(data.password, 10);
+        await UserModel.create({
+            name: data.name,
+            email: data.email,
+            password: hashedPassword,
+        });
+
+        res.status(201).json({
+            message: "user is created ... ",
+        });
+    } catch (error: any) {
+        console.error("error while signup:", error);
+        
+        if (error.code === 11000) {
+            res.status(409).json({
+                message: "User with this email or name already exists"
+            });
+            return;
+        }
+
+        res.status(500).json({
+            message: "Internal server error"
+        });
     }
 });
 
@@ -35,54 +49,56 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
     try {
         const { data, success, error } = SignSchema.safeParse(req.body);
         if (!success) {
-            res.json({
-                message: "error in inputs",
-                error: error,
+            res.status(411).json({
+                message: "Error in inputs",
+                errors: error.format(),
             });
             return;
-            } 
-        else {
-            const existingUser = await UserModel.findOne({
-                email: data.email,
+        }
+
+        const existingUser = await UserModel.findOne({
+            email: data.email,
+        });
+
+        if (!existingUser) {
+            res.status(403).json({
+                message: "Invalid email or password",
+            });
+            return;
+        }
+
+        const matchPassword = await bcrypt.compare(
+            data.password,
+            existingUser.password as string
+        );
+
+        if (matchPassword) {
+            const token = jwt.sign(
+                {
+                    id: existingUser._id,
+                },
+                ENV.JWT_SECRETE
+            );
+            res.cookie(ENV.COOKIE_NAME, token, {
+                httpOnly: true,
+                sameSite: "strict"
             });
 
-            if (!existingUser?.password) {
-                throw new Error("user password  not found ..");
-            }
-            const matchPassword = await bcrypt.compare(
-                data.password,
-                existingUser.password
-            );
-
-            if (matchPassword) {
-                const token = jwt.sign(
-                    {
-                        id: existingUser._id,
-                    },
-                    ENV.JWT_SECRETE
-                );
-                res.cookie(ENV.COOKIE_NAME,token,{
-                    httpOnly:true,
-                    sameSite:"strict"
-                })
-
-                res.json({
-                    message: "login is succesful",
-                    token: token,
-                });
-                return;
-            } else {
-                res.json({
-                    message: "email or password is invalid",
-                });
-                return;
-            } 
+            res.json({
+                message: "login is successful",
+                token: token,
+            });
+        } else {
+            res.status(403).json({
+                message: "Invalid email or password",
+            });
         }
     } catch (err) {
+        console.error("error while signin:", err);
         res.status(500).json({
-            message:"Internal server error"
-        })
-     }
+            message: "Internal server error"
+        });
+    }
 });
 
 userRouter.post("/logout",(_,res)=>{

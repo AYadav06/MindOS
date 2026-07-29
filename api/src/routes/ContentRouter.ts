@@ -33,10 +33,13 @@ contentRouter.post("/", authMiddleware, async (req: AuthRequest, res: Response) 
       // Continue without embedding - content will still be saved
     }
 
+    // For Notes type, link can be empty/undefined; for other types, link is required
+    const linkValue = data.type === "Notes" ? (data.link || undefined) : data.link;
+
     await ContentModel.create({
       contentId: data.contentId,
       title: data.title,
-      link: data.link,
+      link: linkValue,
       type: data.type,
       tags: data.tags,
       createdAt: data.createdAt,

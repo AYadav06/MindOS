@@ -11,7 +11,10 @@ const userSchema=new Schema({
 
 const ContentSchema=new Schema({
     title:{type:String,required:true},
-    link:{type:String,required:true},
+    link:{
+        type:String,
+        required:false, // Made optional, validated conditionally in pre-save hook
+    },
     type:{type:String,enum:contentTypes,required:true},
     tags:[
         {
@@ -36,6 +39,15 @@ const ContentSchema=new Schema({
         select:false // Don't include embeddings in default queries for performance
     }
 })
+
+// Pre-save validation: link is required for all types except Notes
+ContentSchema.pre('save', function(next) {
+    if (this.type !== 'Notes' && (!this.link || this.link.trim() === '')) {
+        const error = new Error('Link is required for this content type');
+        return next(error);
+    }
+    next();
+});
 
 
 const TagSchema =new Schema({

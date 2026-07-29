@@ -7,7 +7,8 @@
  */
 export function cosineSimilarity(vecA: number[], vecB: number[]): number {
   if (vecA.length !== vecB.length) {
-    throw new Error('Vectors must have the same length');
+    // Dimension mismatch (e.g. old 384-dim vs new 512-dim embeddings) — skip gracefully
+    return 0;
   }
 
   let dotProduct = 0;

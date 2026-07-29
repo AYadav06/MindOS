@@ -5,6 +5,7 @@ import { userRouter } from './routes/UserRouter';
 import { contentRouter } from './routes/ContentRouter';
 import { brainRouter } from './routes/BrainRouter';
 import { searchRouter } from './routes/SearchRouter';
+import { analysisRouter } from './routes/AnalysisRouter';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import { router } from './middleware/auth';
@@ -23,6 +24,7 @@ app.use("/api/v1",userRouter);
 app.use("/api/v1/content",contentRouter);
 app.use("/api/v1/brain",brainRouter);
 app.use("/api/v1/search",searchRouter);
+app.use("/api/v1/analyze",analysisRouter);
 app.use("/user",router);
 
 async function startServer(){
