@@ -1,6 +1,5 @@
-import React from 'react';
 import { Logo } from '../assets/Logo';
-import { Twitter, Linkedin, Github, Mail, Phone } from 'lucide-react';
+import { Twitter, Mail, Phone } from 'lucide-react';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();

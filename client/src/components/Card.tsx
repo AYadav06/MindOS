@@ -11,13 +11,13 @@ export default function Card() {
   return (
     <div className="w-full mt-8 sm:mt-12 px-2 sm:px-4">
 
-      <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-10 justify-center lg:justify-start h-auto lg:h-40">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
         {cards.map((card, index) => {
           const Icon = card.icon;
           return (
             <div
               key={index}
-              className="group relative w-full sm:w-[calc(50%-0.5rem)] md:w-[280px] lg:w-[280px] bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:bg-slate-800/70 hover:border-slate-600/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 transform hover:-translate-y-1"
+              className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:bg-slate-800/70 hover:border-slate-600/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 transform hover:-translate-y-1"
             >
               <div className={`w-10 h-10 sm:w-12 sm:h-12 ${card.iconBg} rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 transition-transform duration-300 group-hover:scale-105`}>
                 <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${card.iconColor}`} />
