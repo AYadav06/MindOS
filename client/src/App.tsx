@@ -7,12 +7,8 @@ import { AuthProvider, useAuth } from "./hooks/AuthContext"
 import type { JSX } from "react"
 
 function PrivateRoute({ children }: { children: JSX.Element }) {
-  const { user, loading} = useAuth();
+  const { user} = useAuth();
 
-  if(loading){
-
-    return<div>loading ...</div>
-  }
   if (!user) return <Navigate to="/signin" replace />;
   return children;
 }
