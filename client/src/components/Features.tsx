@@ -35,7 +35,7 @@ export const Feature = () => {
   ];
 
   const BrowserExtensionDemo = ({ isActive }: { isActive: boolean }) => (
-    <div className="relative bg-slate-800/50 rounded-xl p-10 w-3xl mx-auto backdrop-blur-sm border border-slate-700/50">
+    <div className="relative bg-slate-800/50 rounded-xl p-4 sm:p-6 md:p-8 lg:p-10 w-full max-w-3xl mx-auto backdrop-blur-sm border border-slate-700/50">
       <div className="flex items-center mb-4">
         <div className="flex space-x-2">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -67,7 +67,7 @@ export const Feature = () => {
   );
 
   const AISearchDemo = ({ isActive }: { isActive: boolean }) => (
-    <div className="bg-slate-800/50 rounded-xl  p-10 w-3xl mx-auto backdrop-blur-sm border border-slate-700/50">
+    <div className="bg-slate-800/50 rounded-xl p-4 sm:p-6 md:p-8 lg:p-10 w-full max-w-3xl mx-auto backdrop-blur-sm border border-slate-700/50">
       <div className="relative mb-6">
         <div className="bg-slate-700/50 rounded-lg p-4 border border-slate-600/50">
           <div className="flex items-center space-x-2">
@@ -99,8 +99,8 @@ export const Feature = () => {
   );
 
   const ResearchViewDemo = ({ isActive }: { isActive: boolean }) => (
-    <div className="bg-slate-800/50 rounded-xl p-10 w-3xl mx-auto backdrop-blur-sm border border-slate-700/50">
-      <div className="grid grid-cols-2 gap-4 h-48">
+    <div className="bg-slate-800/50 rounded-xl p-4 sm:p-6 md:p-8 lg:p-10 w-full max-w-3xl mx-auto backdrop-blur-sm border border-slate-700/50">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 min-h-[200px] sm:h-48">
         <div className="space-y-2">
           <div className="text-xs text-slate-400 mb-2">Selected Sources</div>
           {[1, 2, 3].map((item) => (
@@ -129,21 +129,21 @@ export const Feature = () => {
   );
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-800 py-12 mt-20 lg:py-20 px-4">
+    <section className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-800 py-8 sm:py-12 md:py-16 lg:py-20 mt-12 sm:mt-16 md:mt-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 lg:mb-6">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 lg:mb-6">
             How the Magic Works
           </h2>
-          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto px-2 sm:px-4">
             Transform how you capture, find, and create with your digital knowledge. 
             Every feature designed to amplify your thinking.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:gap-12">
+        <div className="grid gap-6 sm:gap-8 lg:gap-12">
           {/* Feature Cards Row */}
-          <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               const isActive = activeFeature === index;
@@ -191,10 +191,10 @@ export const Feature = () => {
           </div>
           
           {/* Demo Section Below */}
-          <div className="mt-8 lg:mt-12">
+          <div className="mt-6 sm:mt-8 lg:mt-12">
             <div className="relative">
               {/* Demo Content */}
-              <div className="relative min-h-[300px] lg:min-h-[400px]">
+              <div className="relative min-h-[250px] sm:min-h-[300px] lg:min-h-[400px]">
                 <div className={`absolute inset-0 transition-all duration-700 transform ${
                   activeFeature === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'
                 }`}>

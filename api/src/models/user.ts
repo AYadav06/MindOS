@@ -4,39 +4,56 @@ import mongoose, { model, Schema, Types } from "mongoose";
 
 export const contentTypes= ['YouTube','Tweets','Notes','Link'] as const
 const userSchema=new Schema({
-    name:{type:String,require:true,unique:true},
-    email:{type:String,require:true,unique:true},
-    password:{type:String,require:true,}
+    name:{type:String,required:true,unique:true},
+    email:{type:String,required:true,unique:true},
+    password:{type:String,required:true,}
 })
 
 const ContentSchema=new Schema({
-    title:{type:String,require:true},
-    link:{type:String,require:true},
-    type:{type:String,enum:contentTypes,require:true},
+    title:{type:String,required:true},
+    link:{
+        type:String,
+        required:false, // Made optional, validated conditionally in pre-save hook
+    },
+    type:{type:String,enum:contentTypes,required:true},
     tags:[
         {
             tagId:
             { type:String,
-                require:true
+                required:true
             },
             title:{
                 type:String,
-                require:true
+                required:true
             }
             
         }
     ],
-    userId:{type:Types.ObjectId,ref:"User",require:true},
+    userId:{type:Types.ObjectId,ref:"User",required:true},
     createdAt:{
         type:String
+    },
+    embedding:{
+        type:[Number],
+        default:undefined,
+        select:false // Don't include embeddings in default queries for performance
     }
 })
+
+// Pre-save validation: link is required for all types except Notes
+ContentSchema.pre('save', function(next) {
+    if (this.type !== 'Notes' && (!this.link || this.link.trim() === '')) {
+        const error = new Error('Link is required for this content type');
+        return next(error);
+    }
+    next();
+});
 
 
 const TagSchema =new Schema({
     title:{
-
-        require:true,
+        type:String,
+        required:true,
         set:(a:string)=> a.toLowerCase().trim()
     }
 })
