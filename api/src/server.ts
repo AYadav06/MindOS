@@ -11,11 +11,34 @@ import cookieParser from 'cookie-parser';
 import { router } from './middleware/auth';
 const app=express();
 
-const corsOption={
-origin:["http://localhost:3000","http://localhost:5173",],
-methods:'GET,POST,PUT,DELETE',
-credentials:true,
-optionsSuccessStatus:204
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "http://localhost:4173",
+  "https://mindos.amitdev.site",
+  "https://mind-os-two.vercel.app",
+];
+
+if (ENV.FRONTEND_URL) {
+  allowedOrigins.push(ENV.FRONTEND_URL);
+}
+
+const corsOption: cors.CorsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (
+      allowedOrigins.includes(origin) ||
+      /\.vercel\.app$/.test(origin) ||
+      /amitdev\.site$/.test(origin)
+    ) {
+      return callback(null, true);
+    }
+    return callback(null, false);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  credentials: true,
+  optionsSuccessStatus: 204,
 };
 app.use(cors(corsOption));
 app.use(express.json());

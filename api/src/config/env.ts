@@ -6,6 +6,6 @@ export const ENV={
     MONGODB_URL:process.env.MONGODB_URL ||'',
     JWT_SECRETE:process.env.JWT_SECRETE ||'defaultSecret',
     COOKIE_NAME:"token",
-    GEMINI_API_KEY:process.env.GEMINI_API_KEY ||''
-
+    GEMINI_API_KEY:process.env.GEMINI_API_KEY ||'',
+    FRONTEND_URL:process.env.FRONTEND_URL ||''
 }

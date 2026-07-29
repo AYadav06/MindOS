@@ -79,9 +79,11 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
                 },
                 ENV.JWT_SECRETE
             );
+            const isProd = process.env.NODE_ENV === "production" || true;
             res.cookie(ENV.COOKIE_NAME, token, {
                 httpOnly: true,
-                sameSite: "strict"
+                sameSite: "none",
+                secure: true,
             });
 
             res.json({
@@ -102,7 +104,11 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
 });
 
 userRouter.post("/logout",(_,res)=>{
-    res.clearCookie(ENV.COOKIE_NAME);
+    res.clearCookie(ENV.COOKIE_NAME, {
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+    });
     res.json({
         message:"User is Loggout"
     })
